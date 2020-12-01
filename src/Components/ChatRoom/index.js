@@ -23,16 +23,19 @@ function ChatRoom({ firestore, auth }) {
     setFormValue("");
   };
 
+  //TODO: Update scroll position when messaged added: https://www.youtube.com/watch?v=nMhIRTfhVWg&ab_channel=Paqmind
   return (
     <div className="chat-room">
       <div className="messages-list">
-        {messages &&
-          messages.map((msg) => (
-            <ChatMessage key={msg.id} message={msg} {...{ auth }} />
-          ))}
+        <div>
+          {messages &&
+            messages.map((msg) => (
+              <ChatMessage key={msg.id} message={msg} {...{ auth }} />
+            ))}
+        </div>
       </div>
 
-      <form className="new-message" onSubmit={sendMessage}>
+      <form className="new-message" onSubmit={sendMessage} autoComplete="off">
         <input
           type="text"
           name="new_message"

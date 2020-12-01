@@ -39,7 +39,6 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 30px 15px 0;
   background-color: #353a45;
 }
 
@@ -47,9 +46,22 @@
   flex: 1;
 }
 
+.messages-list > div {
+  max-height: 85vh;
+  padding-top: 30px;
+  overflow: auto;
+}
+
 .new-message {
   display: flex;
   height: 40px;
+}
+
+.createdAt {
+  font-size: 10px;
+  font-style: italic;
+  color: #fff;
+  opacity: 0.7;
 }
 
 .new-message input {
@@ -71,6 +83,18 @@
   cursor: pointer;
 }
 
+.App-header button {
+  appearance: none;
+  border: none;
+  color: #fff;
+  font-size: 12px;
+  height: 30px;
+  padding: 0 10px;
+  background-color: red;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
 .new-message button:hover {
   background-color: #5070ae;
 }
@@ -85,4 +109,28 @@
   font-size: 12px;
   color: #fff;
   opacity: 0.8;
+}
+
+.message {
+  padding: 0 15px;
+  line-height: 1.6;
+}
+
+.message.send {
+  display: flex;
+  justify-content: flex-end;
+  padding-left: 30px;
+}
+
+.message.received {
+  padding-right: 30px;
+}
+
+.messages-list .message {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+}
+
+.message-text {
+  font-size: 12px;
 }
