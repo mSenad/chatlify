@@ -38,18 +38,20 @@
 .chat-room {
   flex: 1;
   display: flex;
+  height: calc(100% - 50px);
   flex-direction: column;
   background-color: #353a45;
 }
 
 .messages-list {
   flex: 1;
+  height: inherit;
+  overflow: auto;
 }
 
 .messages-list > div {
-  max-height: 85vh;
   padding-top: 30px;
-  overflow: auto;
+  height: inherit;
 }
 
 .new-message {

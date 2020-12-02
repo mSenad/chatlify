@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import firebase from "firebase/app";
 import ChatMessage from "../ChatMessage";
@@ -8,6 +8,7 @@ function ChatRoom({ firestore, auth }) {
   const query = messagesReference.orderBy("createdAt").limit(25);
   const [messages] = useCollectionData(query, { idField: "id" });
   const [formValue, setFormValue] = useState("");
+  const messageEL = useRef(null);
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -23,7 +24,14 @@ function ChatRoom({ firestore, auth }) {
     setFormValue("");
   };
 
-  //TODO: Update scroll position when messaged added: https://www.youtube.com/watch?v=nMhIRTfhVWg&ab_channel=Paqmind
+  const scrollToBottom = () => {
+    if (messageEL) {
+      messageEL.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  useEffect(scrollToBottom, [messages]);
+
   return (
     <div className="chat-room">
       <div className="messages-list">
@@ -32,6 +40,7 @@ function ChatRoom({ firestore, auth }) {
             messages.map((msg) => (
               <ChatMessage key={msg.id} message={msg} {...{ auth }} />
             ))}
+          <div className="inView" ref={messageEL} />
         </div>
       </div>
 
