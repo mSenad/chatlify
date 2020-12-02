@@ -35,6 +35,7 @@ function App() {
         <div className="logo">CHATLIFY</div>
         <SignOut {...{ auth }} />
       </header>
+
       {user ? <ChatRoom {...{ firestore, auth }} /> : <SignIn />}
     </div>
   );
